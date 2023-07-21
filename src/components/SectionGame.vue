@@ -36,7 +36,7 @@
   width: 100%;
   height: 100%;
   max-height: 26rem;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: auto;
   background-position-x: center;
   background-size: contain;

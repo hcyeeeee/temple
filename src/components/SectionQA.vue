@@ -3,9 +3,19 @@
     <h2>奇思廟想</h2>
     <div>
       <ul class="layout_QA_inner">
-        <li class="QA_more" v-for="item in question" :key="item.index">
-          {{ item }}
-          <span></span>
+        <li class="QA_more" v-for="item in question" :key="item.id">
+          <div class="questions">
+            <div>{{ item.Q }}</div>
+            <img @click="open(item)" class="QA_more1"
+              :src="item.showAnswers ? require('../assets/minus.png') : require('../assets/plus.png')" alt="logo">
+          </div>
+          <div class="questions" :style="{ display: item.showAnswers ? 'grid' : 'none' }">
+            <div class="answers"> {{ item.A }}
+              <a :href="item.link">點我看更多回覆</a>
+            </div>
+            <div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -31,10 +41,26 @@
 export default {
   data() {
     return {
-      question: ['0問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？', '1問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？', '2問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？', '3問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？', '4問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？'],
-
+      question: [
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題問題問題1', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題？1', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題2', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？2', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題3', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？3', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題', A: '問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題問題問題？4', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題5', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？5', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題6', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？6', link: '123' },]
     }
   },
+  methods: {
+    open(item) {
+      this.question.forEach((a) => {
+        if (a !== item) {
+          a.showAnswers = false;
+        }
+      });
+      item.showAnswers = !item.showAnswers;
+    }
+  }
+
 }
 </script>
 
@@ -53,17 +79,14 @@ h2::after {
   top: 1rem;
   position: relative;
   margin: 1rem;
-
 }
 
-.QA_more :after {
-  content: url('../assets/plus.png');
+.questions {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
 }
 
-.QA_more :hover:after {
-  content: url('../assets/minus.png');
-  transition: 1s all;
-}
+
 
 
 .layout_QA_inner {
@@ -71,7 +94,7 @@ h2::after {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   padding: 1rem;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 2rem auto;
 }
 
@@ -91,5 +114,24 @@ li {
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex-direction: column;
+}
+
+
+.answers {
+  color: var(--unnamed, #2B2828);
+  text-align: justify;
+  font-family: Manrope;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.05rem;
+}
+
+.answers a {
+  color: var(--unnamed, #2B2828);
+  font-size: 1rem;
+
 }
 </style>

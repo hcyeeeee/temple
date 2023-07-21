@@ -36,10 +36,8 @@ export default {
   --main-yellow-color: #D6BC5C;
   --main-red-color: #CF3319;
   font-family: 'Noto Sans TC', sans-serif;
-  --content-fontsize: 1.2rem;
+  --content-fontsize: 1.375rem;
   --title-fontsize: 1.875rem;
-  ;
-
 }
 
 html,
@@ -143,11 +141,13 @@ hgroup,
 menu,
 nav,
 section {
+  font-family: 'Noto Sans TC', sans-serif;
   display: block;
 }
 
 body {
   line-height: 1;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 ol,
@@ -196,6 +196,7 @@ h2 {
   line-height: normal;
   letter-spacing: 0.09375rem;
   text-align: center;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 h3 {
@@ -209,7 +210,7 @@ h3 {
 }
 
 .layout {
-  max-width: 1400px;
+  max-width: 1300px;
   margin: auto;
   width: 100%;
 }

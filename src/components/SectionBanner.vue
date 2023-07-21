@@ -93,7 +93,7 @@
 .header {
   display: flex;
   justify-content: space-around;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: auto;
   background-image: url("../assets/redbg.png");
 }
