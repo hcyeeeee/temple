@@ -1,16 +1,17 @@
 <template>
-  <div class="layout_QA">
+  <div class="layout_QA" id="qa">
     <h2>奇思廟想</h2>
     <div>
       <ul class="layout_QA_inner">
         <li class="QA_more" v-for="item in question" :key="item.id">
           <div class="questions">
             <div>{{ item.Q }}</div>
-            <img @click="open(item)" class="QA_more1"
+            <img loading="lazy" @click="open(item)" class="question_img"
               :src="item.showAnswers ? require('../assets/minus.png') : require('../assets/plus.png')" alt="logo">
           </div>
           <div class="questions" :style="{ display: item.showAnswers ? 'grid' : 'none' }">
             <div class="answers"> {{ item.A }}
+              <br> <br>
               <a :href="item.link">點我看更多回覆</a>
             </div>
             <div>
@@ -42,12 +43,12 @@ export default {
   data() {
     return {
       question: [
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題問題問題1', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題？1', link: '123' },
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題2', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？2', link: '123' },
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題3', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？3', link: '123' },
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題', A: '問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問題問題問問題問題問題？4', link: '123' },
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題5', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？5', link: '123' },
-        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題6', A: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題？6', link: '123' },]
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題題問題問題問?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },
+        { Q: '問題問題問題問題問題問題問題問題問題問題問題問題問題問題問題?', A: '回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答', link: '123' },]
     }
   },
   methods: {
@@ -65,38 +66,56 @@ export default {
 </script>
 
 
-<style scoped>
-h2::before {
-  content: url('../assets/house.png');
-  top: 1rem;
-  position: relative;
-  margin: 1rem;
 
+<style lang="scss" scoped>
+@mixin pad {
+  @media(min-width:768px) {
+    @content;
+  }
 }
 
-h2::after {
-  content: url('../assets/house2.png');
-  top: 1rem;
-  position: relative;
-  margin: 1rem;
+h2 {
+
+  &:before,
+  &:after {
+    top: 1rem;
+    position: relative;
+    margin: 1rem;
+  }
+
+  &:before {
+    content: url('../assets/house.png');
+  }
+
+  &:after {
+    content: url('../assets/house2.png');
+  }
 }
-
-.questions {
-  display: grid;
-  grid-template-columns: 10fr 1fr;
-}
-
-
-
 
 .layout_QA_inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 1rem;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 2rem auto;
+
+  @include pad {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .questions {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    letter-spacing: 0.1rem;
+
+    .question_img {
+      margin: 1rem .5rem;
+      cursor: pointer;
+    }
+  }
 }
+
 
 ul {
   display: flex;
@@ -104,34 +123,34 @@ ul {
   align-items: center;
   gap: 2rem;
 
-}
 
-li {
-  text-align: start;
-  font-size: var(--content-fontsize);
-  padding: 1rem;
-  border-bottom: 1px solid var(--main-black-color);
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-direction: column;
+  li {
+    text-align: start;
+    font-size: var(--content-fontsize);
+    letter-spacing: 0.05rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--main-black-color);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+    line-height: normal;
+  }
 }
-
 
 .answers {
   color: var(--unnamed, #2B2828);
-  text-align: justify;
-  font-family: Manrope;
   font-size: 1rem;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.05rem;
-}
+  padding-right: .2rem;
+  text-align: justify;
 
-.answers a {
-  color: var(--unnamed, #2B2828);
-  font-size: 1rem;
-
+  a {
+    color: var(--unnamed, #2B2828);
+    font-size: 1rem;
+    border-bottom: 1px solid;
+  }
 }
 </style>

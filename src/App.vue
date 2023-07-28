@@ -30,15 +30,22 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 :root {
   --main-black-color: #2B2828;
   --main-yellow-color: #D6BC5C;
   --main-red-color: #CF3319;
   font-family: 'Noto Sans TC', sans-serif;
-  --content-fontsize: 1.375rem;
+  --content-fontsize: 1.25rem;
   --title-fontsize: 1.875rem;
 }
+
+@mixin pad {
+  @media(min-width:768px) {
+    @content;
+  }
+}
+
 
 html,
 body,
@@ -145,9 +152,14 @@ section {
   display: block;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   line-height: 1;
   font-family: 'Noto Sans TC', sans-serif;
+  scroll-behavior: smooth;
 }
 
 ol,
@@ -192,25 +204,34 @@ h2 {
   text-align: justify;
   font-family: Noto Serif TC;
   font-size: var(--title-fontsize);
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
   letter-spacing: 0.09375rem;
   text-align: center;
-  font-family: 'Noto Sans TC', sans-serif;
 }
 
 h3 {
   color: #F1F3F4;
   font-family: Noto Serif TC;
-  font-size: var(--title-fontsize);
+  font-size: var(--content-fontsize);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: normal;
   letter-spacing: 0.09375rem;
+  text-align: start;
+
+
+  @include pad {
+    font-size: var(--title-fontsize);
+  }
+}
+
+a {
+  text-decoration: none;
 }
 
 .layout {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
   width: 100%;
 }

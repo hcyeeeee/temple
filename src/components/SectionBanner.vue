@@ -2,30 +2,49 @@
   <div class="">
     <div class="red">
       <div class="banner">
-        <img src="../assets/banner.png" class="cover" alt="">
+        <picture class="cover">
+          <source srcset="../assets/banner.png" media="(min-width: 768px)">
+          <img loading="lazy" src="../assets/banner_mobile.png">
+        </picture>
       </div>
+
     </div>
     <div>
       <div class="L-cloud">
-        <img src="../assets/cloud2.png" alt="">
+        <picture>
+          <source srcset="../assets/cloud2.png" media="(min-width: 768px)">
+          <img loading="lazy" src="../assets/cloud2_mobile.png">
+        </picture>
       </div>
       <div class="R-cloud">
-        <img src="../assets/cloud.png" alt="">
+        <picture>
+          <source srcset="../assets/cloud.png" media="(min-width: 768px)">
+          <img loading="lazy" src="../assets/cloud_mobile.png">
+        </picture>
       </div>
     </div>
   </div>
 </template>
 
 
+<style lang="scss" scoped>
+@mixin pad {
+  @media(min-width:768px) {
+    @content;
+  }
+}
 
-<style scoped>
 .L-cloud {
   animation: floating-cloud 10s 0.2s linear infinite;
   -webkit-animation: floating-cloud 10s 0.2s linear infinite;
   transform: scale(1.0);
   position: absolute;
   left: 0;
-  top: 20rem
+  top: 14rem;
+
+  @include pad {
+    top: 22rem;
+  }
 }
 
 .R-cloud {
@@ -34,45 +53,56 @@
   transform: scale(1.0);
   position: absolute;
   right: 0;
-  top: 25rem
+  top: 15rem;
+
+  @include pad {
+    top: 26rem;
+  }
 }
 
 @keyframes floating-cloud {
   0% {
-    margin-left: 1%;
+    margin-left: 3%;
   }
 
   50% {
-    margin-left: -3%;
+    margin-left: 1%;
   }
 
   100% {
-    margin-left: 1%;
+    margin-left: 3%;
   }
+
 }
 
 @keyframes floating-cloud2 {
   20% {
-    margin-right: -2%;
+    margin-right: 4%;
   }
 
   50% {
-    margin-right: 1%;
+    margin-right: 2%;
   }
 
   100% {
-    margin-right: -2%;
+    margin-right: 4%;
   }
 }
+
+
 
 
 /* banner */
 .banner img {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 1rem auto 3rem;
   transform: rotate(-1.118deg);
   position: relative;
+
+  @include pad {
+    transform: rotate(0deg);
+  }
 }
 
 .red {
@@ -93,7 +123,7 @@
 .header {
   display: flex;
   justify-content: space-around;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
   background-image: url("../assets/redbg.png");
 }
